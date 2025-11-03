@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
-import { EnvelopeIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import type { DirectorBio } from "../../types/Contentful";
-import {
-  LinkedInIcon,
-  GoogleScholarIcon,
-  TwitterIcon,
-} from "../../components/Icons";
 
 interface DirectorSpotlightProps {
   director: DirectorBio;
@@ -16,33 +11,25 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
     ? `https:${director.headshot.fields.file.url}`
     : director.headshot.fields.file.url;
 
-  // Split bio into paragraphs
   const bioParagraphs = director.bio.split("\n\n").filter((p) => p.trim());
 
   return (
     <div className="bg-white py-24 sm:py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Split Layout */}
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-16 lg:items-start">
-          {/* Left Side - Photo */}
           <div className="relative mb-12 lg:mb-0 lg:sticky lg:top-24">
             <div className="relative">
-              {/* Decorative gradient background */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-blue-100 to-purple-100 opacity-50 blur-2xl"></div>
-
-              {/* Photo */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5">
                 <img
                   src={imageUrl}
                   alt={director.name}
                   className="w-full object-cover"
                 />
-              </div>
+              </div>  
 
             </div>
           </div>
 
-          {/* Right Side - Bio */}
           <div>
             <div className="mb-6">
               <h3 className="text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -53,7 +40,6 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
               </p>
             </div>
 
-            {/* Bio Paragraphs */}
             <div className="prose prose-lg max-w-none">
               {bioParagraphs.map((paragraph, index) => (
                 <p key={index} className="text-base leading-7 text-gray-600 mb-6">
@@ -62,7 +48,6 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
               ))}
             </div>
 
-            {/* CTA Button */}
             <div className="mt-10">
               <Link
                 to="/team"
