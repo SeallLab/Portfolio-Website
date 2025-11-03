@@ -100,3 +100,50 @@ export type Software = {
   tags?: string[];
   order?: number;
 };
+
+export type LabInfo = {
+  heroHeadline: string;
+  heroTagline: string;
+  missionTitle: string;
+  missionDescription: string;
+  approachTitle: string;
+  approachDescription: string;
+  impactTitle: string;
+  impactDescription: string;
+};
+
+export type DirectorBio = {
+  name: string;
+  title: string;
+  headshot: Image;
+  bio: string;
+  email?: string;
+  linkedinUrl?: string;
+  googleScholarUrl?: string;
+  twitterUrl?: string;
+};
+
+export type ResearchHighlight = {
+  title: string;
+  description: string;
+  image?: Image;
+  link: string;
+  featured?: boolean;
+  order?: number;
+};
+
+export type LabStatistics = {
+  publicationsCount: number;
+  projectsCount: number;
+  teamMembersCount: number;
+  yearsOfResearch: number;
+};
+
+export type CTASection = {
+  headline: string;
+  subtitle: string;
+  primaryButtonText: string;
+  primaryButtonLink: string;
+  secondaryButtonText: string;
+  secondaryButtonLink: string;
+};

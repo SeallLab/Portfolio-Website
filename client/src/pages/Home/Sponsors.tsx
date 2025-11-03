@@ -3,7 +3,7 @@ import { mockSponsors } from "./mockData";
 export default function Sponsors() {
   // todo should pull from contentful
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-white py-24 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
           Proudly Supported By

@@ -12,7 +12,7 @@ interface PublicationItemProps {
 
 export default function PublicationItem({
   publication,
-  labMembers = ["Lab Director"],
+  labMembers = [],
 }: PublicationItemProps) {
   const { title, authors, venue, year, pdfUrl, doi, bibtex, type } =
     publication;
@@ -103,7 +103,6 @@ export default function PublicationItem({
             <button
               onClick={() => {
                 navigator.clipboard.writeText(bibtex);
-                // Could add a toast notification here
               }}
               className="flex h-9 items-center gap-2 rounded-full bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-all duration-200 hover:bg-blue-100 hover:text-blue-600 hover:scale-105"
               title="Copy BibTeX"

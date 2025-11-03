@@ -37,9 +37,9 @@ export default function Publications() {
       {/* Publications Section */}
       <div className="mx-auto max-w-5xl px-6 pb-32 lg:px-8">
         {years.map((year, yearIndex) => (
-          <div key={year} className={yearIndex > 0 ? "mt-16" : ""}>
+          <div key={year} className={yearIndex > 0 ? "mt-4" : ""}>
             {/* Year Header */}
-            <div className="mb-8">
+            <div className="mb-2">
               <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
                 {year}
               </h2>
