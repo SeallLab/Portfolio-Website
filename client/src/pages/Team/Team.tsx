@@ -1,18 +1,22 @@
 // import { useContentful } from '../../context/ContentfulContext'
-import LabDirectorCard from './LabDirectorCard'
-import TeamMemberCard from './TeamMemberCard'
-import { mockLabDirector, mockTeamMembers } from './mockData'
+import LabDirectorCard from "./LabDirectorCard";
+import TeamMemberCard from "./TeamMemberCard";
+import { mockLabDirector, mockTeamMembers } from "./mockData";
 
 export default function Team() {
   // TODO: Replace mock data with Contentful data
   // const { labDirector, teamMembers, loading } = useContentful()
-  const labDirector = mockLabDirector
-  const teamMembers = mockTeamMembers
+  const labDirector = mockLabDirector;
+  const teamMembers = mockTeamMembers;
 
   // Filter team members by type
-  const currentMembers = teamMembers.filter((member) => member.type === 'current')
-  const alumni = teamMembers.filter((member) => member.type === 'alumni')
-  const collaborators = teamMembers.filter((member) => member.type === 'collaborator')
+  const currentMembers = teamMembers.filter(
+    (member) => member.type === "current",
+  );
+  const alumni = teamMembers.filter((member) => member.type === "alumni");
+  const collaborators = teamMembers.filter(
+    (member) => member.type === "collaborator",
+  );
 
   return (
     <div className="bg-white min-h-screen">
@@ -84,10 +88,11 @@ export default function Team() {
       {/* Empty State - for when using Contentful and data hasn't loaded yet */}
       {teamMembers.length === 0 && !labDirector && (
         <div className="mx-auto max-w-2xl px-6 pb-32 text-center">
-          <p className="text-gray-500">No team members to display at this time.</p>
+          <p className="text-gray-500">
+            No team members to display at this time.
+          </p>
         </div>
       )}
     </div>
-  )
+  );
 }
-

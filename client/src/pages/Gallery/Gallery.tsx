@@ -1,11 +1,11 @@
 // import { useContentful } from '../../context/ContentfulContext'
-import GalleryCard from './GalleryCard'
-import { mockGalleryImages } from './mockData'
+import GalleryCard from "./GalleryCard";
+import { mockGalleryImages } from "./mockData";
 
 export default function Gallery() {
   // TODO: Replace mock data with Contentful data
   // const { galleryImages, loading } = useContentful()
-  const galleryImages = mockGalleryImages
+  const galleryImages = mockGalleryImages;
 
   return (
     <div className="bg-white min-h-screen">
@@ -16,7 +16,8 @@ export default function Gallery() {
             Gallery
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            The software engineering for all labs images through conferences and events.
+            The software engineering for all labs images through conferences and
+            events.
           </p>
         </div>
       </div>
@@ -25,7 +26,10 @@ export default function Gallery() {
       <div className="mx-auto max-w-7xl px-6 pb-32 lg:px-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {galleryImages.map((galleryImage, index) => (
-            <GalleryCard key={galleryImage.image.sys.id || `gallery-${index}`} galleryImage={galleryImage} />
+            <GalleryCard
+              key={galleryImage.image.sys.id || `gallery-${index}`}
+              galleryImage={galleryImage}
+            />
           ))}
         </div>
 
@@ -37,6 +41,5 @@ export default function Gallery() {
         )}
       </div>
     </div>
-  )
+  );
 }
-

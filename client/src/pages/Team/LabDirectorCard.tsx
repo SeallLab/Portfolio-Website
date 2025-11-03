@@ -1,18 +1,39 @@
-import { EnvelopeIcon, DocumentIcon, PhoneIcon } from '@heroicons/react/24/outline'
-import type { LabDirector } from '../../types/Contentful'
-import { getCountryFlag } from '../../helpers/flag'
-import { LinkedInIcon, TwitterIcon, GoogleScholarIcon } from '../../components/Icons'
+import {
+  EnvelopeIcon,
+  DocumentIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
+import type { LabDirector } from "../../types/Contentful";
+import { getCountryFlag } from "../../helpers/flag";
+import {
+  LinkedInIcon,
+  TwitterIcon,
+  GoogleScholarIcon,
+} from "../../components/Icons";
 
 interface LabDirectorCardProps {
-  director: LabDirector
+  director: LabDirector;
 }
 
 export default function LabDirectorCard({ director }: LabDirectorCardProps) {
-  const { firstName, lastName, position, description, headshot, email, linkedinUrl, twitterUrl, googleScholarUrl, phone, countryCode, cvUrl } = director
-  const fullName = `${firstName} ${lastName}`
-  const imageUrl = headshot.fields.file.url.startsWith('//')
+  const {
+    firstName,
+    lastName,
+    position,
+    description,
+    headshot,
+    email,
+    linkedinUrl,
+    twitterUrl,
+    googleScholarUrl,
+    phone,
+    countryCode,
+    cvUrl,
+  } = director;
+  const fullName = `${firstName} ${lastName}`;
+  const imageUrl = headshot.fields.file.url.startsWith("//")
     ? `https:${headshot.fields.file.url}`
-    : headshot.fields.file.url
+    : headshot.fields.file.url;
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -125,7 +146,7 @@ export default function LabDirectorCard({ director }: LabDirectorCardProps) {
                   className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 hover:shadow-md"
                 >
                   <DocumentIcon className="h-5 w-5" />
-                 CV
+                  CV
                 </a>
               )}
             </div>
@@ -133,6 +154,5 @@ export default function LabDirectorCard({ director }: LabDirectorCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

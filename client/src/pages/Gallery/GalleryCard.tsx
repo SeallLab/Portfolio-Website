@@ -1,15 +1,15 @@
-import type { GalleryImage } from '../../types/Contentful'
+import type { GalleryImage } from "../../types/Contentful";
 
 interface GalleryCardProps {
-  galleryImage: GalleryImage
+  galleryImage: GalleryImage;
 }
 
 export default function GalleryCard({ galleryImage }: GalleryCardProps) {
-  const { title, description, image } = galleryImage
-  const imageUrl = image.fields.file.url.startsWith('//')
+  const { title, description, image } = galleryImage;
+  const imageUrl = image.fields.file.url.startsWith("//")
     ? `https:${image.fields.file.url}`
-    : image.fields.file.url
-  const hasOverlayContent = title || description
+    : image.fields.file.url;
+  const hasOverlayContent = title || description;
 
   return (
     <div className="group relative overflow-hidden rounded-lg bg-gray-100 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-xl">
@@ -27,9 +27,7 @@ export default function GalleryCard({ galleryImage }: GalleryCardProps) {
         <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <div className="p-6">
             {title && (
-              <h3 className="text-xl font-semibold text-white">
-                {title}
-              </h3>
+              <h3 className="text-xl font-semibold text-white">{title}</h3>
             )}
             {description && (
               <p className="mt-2 text-sm leading-6 text-gray-200">
@@ -40,6 +38,5 @@ export default function GalleryCard({ galleryImage }: GalleryCardProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
-

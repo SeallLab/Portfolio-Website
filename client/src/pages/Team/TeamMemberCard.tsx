@@ -1,18 +1,27 @@
-import { EnvelopeIcon } from '@heroicons/react/24/outline'
-import type { TeamMember } from '../../types/Contentful'
-import { getCountryFlag } from '../../helpers/flag'
-import { LinkedInIcon } from '../../components/Icons'
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import type { TeamMember } from "../../types/Contentful";
+import { getCountryFlag } from "../../helpers/flag";
+import { LinkedInIcon } from "../../components/Icons";
 
 interface TeamMemberCardProps {
-  member: TeamMember
+  member: TeamMember;
 }
 
 export default function TeamMemberCard({ member }: TeamMemberCardProps) {
-  const { firstName, lastName, position, description, headshot, email, linkedinUrl, countryCode } = member
-  const fullName = `${firstName} ${lastName}`
-  const imageUrl = headshot.fields.file.url.startsWith('//')
+  const {
+    firstName,
+    lastName,
+    position,
+    description,
+    headshot,
+    email,
+    linkedinUrl,
+    countryCode,
+  } = member;
+  const fullName = `${firstName} ${lastName}`;
+  const imageUrl = headshot.fields.file.url.startsWith("//")
     ? `https:${headshot.fields.file.url}`
-    : headshot.fields.file.url
+    : headshot.fields.file.url;
 
   return (
     <div className="group relative flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-lg hover:scale-105">
@@ -78,6 +87,5 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
-
