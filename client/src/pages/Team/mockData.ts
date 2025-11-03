@@ -1,46 +1,54 @@
-import type { TeamMember } from '../../types/Contentful'
+import type { LabDirector, TeamMember } from '../../types/Contentful'
+
+// Mock Lab Director data
+// This will be replaced with Contentful data via useContentful() hook
+export const mockLabDirector: LabDirector = {
+  firstName: 'Ronnie',
+  lastName: 'De Souza Santos',
+  position: 'Principal Investigator, Associate Professor',
+  description: 'Leading researcher specializing in software engineering for all, with a focus on accessibility, inclusivity, and equitable technology solutions. Over 15 years of experience advancing research in human-computer interaction and inclusive design.',
+  headshot: {
+    fields: {
+      title: 'Ronnie De Souza Santos Headshot',
+      description: 'Professional headshot',
+      file: {
+        url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+        fileName: 'ronnie-headshot.jpg',
+        contentType: 'image/jpeg',
+        details: {
+          size: 50000,
+          image: {
+            width: 400,
+            height: 400
+          }
+        }
+      }
+    },
+    sys: {
+      id: 'director-1',
+      type: 'Asset',
+      createdAt: '2024-01-01',
+      updatedAt: '2024-01-01',
+      locale: 'en-US'
+    }
+  },
+  email: 'ronnie.desouzasantos@ucalgary.ca',
+  linkedinUrl: 'https://www.linkedin.com/in/drdesouzasantos/',
+  twitterUrl: 'https://x.com/softwaronnie',
+  googleScholarUrl: 'https://scholar.google.com/citations?user=wYfnBrYAAAAJ&hl=en',
+  phone: '+14032208076',
+  countryCode: 'BR',
+  cvUrl: 'https://example.com/cv/ronnie-de-souza-santos.pdf'
+}
 
 // Mock data following the TeamMember schema
 // This will be replaced with Contentful data via useContentful() hook
 export const mockTeamMembers: TeamMember[] = [
   {
-    firstName: 'Ronnie',
-    lastName: 'De Souza Santos',
-    description: 'Principal Investigator and lead researcher specializing in environmental sustainability and energy systems. Leading groundbreaking research in renewable energy applications.',
-    headshot: {
-      fields: {
-        title: 'Ronnie De Souza Santos Headshot',
-        description: 'Professional headshot',
-        file: {
-          url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-          fileName: 'ronnie-headshot.jpg',
-          contentType: 'image/jpeg',
-          details: {
-            size: 50000,
-            image: {
-              width: 400,
-              height: 400
-            }
-          }
-        }
-      },
-      sys: {
-        id: '1',
-        type: 'Asset',
-        createdAt: '2024-01-01',
-        updatedAt: '2024-01-01',
-        locale: 'en-US'
-      }
-    },
-    email: 'ronnie.santos@example.com',
-    linkedinUrl: 'https://linkedin.com/in/ronniesantos',
-    countryCode: 'BR',
-    current: true
-  },
-  {
     firstName: 'Maria',
     lastName: 'Silva',
-    description: 'Senior Research Scientist focused on climate modeling and data analysis. Expertise in computational methods for environmental impact assessment.',
+    position: 'Postdoctoral Researcher',
+    description: 'Research scientist focused on accessibility testing and inclusive design methodologies. Expertise in user experience research.',
     headshot: {
       fields: {
         title: 'Maria Silva Headshot',
@@ -69,12 +77,13 @@ export const mockTeamMembers: TeamMember[] = [
     email: 'maria.silva@example.com',
     linkedinUrl: 'https://linkedin.com/in/mariasilva',
     countryCode: 'PT',
-    current: true
+    type: 'current'
   },
   {
     firstName: 'James',
     lastName: 'Chen',
-    description: 'Postdoctoral Researcher specializing in sustainable energy infrastructure and smart grid technologies.',
+    position: 'PhD Candidate',
+    description: 'Doctoral researcher investigating assistive technologies and accessible software development practices.',
     headshot: {
       fields: {
         title: 'James Chen Headshot',
@@ -103,12 +112,13 @@ export const mockTeamMembers: TeamMember[] = [
     email: 'james.chen@example.com',
     linkedinUrl: 'https://linkedin.com/in/jameschen',
     countryCode: 'US',
-    current: true
+    type: 'current'
   },
   {
     firstName: 'Lucas',
     lastName: 'Andersson',
-    description: 'Research Assistant working on experimental designs for solar energy optimization and efficiency improvements.',
+    position: 'Research Assistant',
+    description: 'Research assistant supporting projects on web accessibility standards and WCAG compliance testing.',
     headshot: {
       fields: {
         title: 'Lucas Andersson Headshot',
@@ -136,12 +146,13 @@ export const mockTeamMembers: TeamMember[] = [
     },
     email: 'lucas.andersson@example.com',
     countryCode: 'SE',
-    current: true
+    type: 'current'
   },
   {
     firstName: 'Sarah',
     lastName: 'Johnson',
-    description: 'Former Senior Scientist who contributed significantly to early research on wind energy integration. Now working in industry.',
+    position: 'Former PhD Student',
+    description: 'Alumni who contributed significantly to early research on accessibility standards. Now working as Senior UX Researcher at Microsoft.',
     headshot: {
       fields: {
         title: 'Sarah Johnson Headshot',
@@ -169,12 +180,13 @@ export const mockTeamMembers: TeamMember[] = [
     },
     linkedinUrl: 'https://linkedin.com/in/sarahjohnson',
     countryCode: 'CA',
-    current: false
+    type: 'alumni'
   },
   {
     firstName: 'David',
     lastName: 'Kim',
-    description: 'Alumni researcher who pioneered methodologies in energy efficiency analysis. Currently a professor at MIT.',
+    position: 'Former Postdoc',
+    description: 'Alumni researcher who pioneered methodologies in inclusive design patterns. Currently an Assistant Professor at MIT.',
     headshot: {
       fields: {
         title: 'David Kim Headshot',
@@ -203,12 +215,13 @@ export const mockTeamMembers: TeamMember[] = [
     email: 'david.kim@mit.edu',
     linkedinUrl: 'https://linkedin.com/in/davidkim',
     countryCode: 'KR',
-    current: false
+    type: 'alumni'
   },
   {
     firstName: 'Elena',
     lastName: 'Rodriguez',
-    description: 'Former PhD student who completed groundbreaking research on bioenergy systems. Now leading sustainability initiatives in Spain.',
+    position: 'Former Graduate Student',
+    description: 'Alumni who completed research on multilingual accessibility. Now leading accessibility initiatives at Google Spain.',
     headshot: {
       fields: {
         title: 'Elena Rodriguez Headshot',
@@ -237,7 +250,76 @@ export const mockTeamMembers: TeamMember[] = [
     email: 'elena.rodriguez@example.com',
     linkedinUrl: 'https://linkedin.com/in/elenarodriguez',
     countryCode: 'ES',
-    current: false
+    type: 'alumni'
+  },
+  {
+    firstName: 'Thomas',
+    lastName: 'Anderson',
+    position: 'Professor, Stanford University',
+    description: 'Frequent collaborator on accessibility research projects. Expert in human-computer interaction and assistive technologies.',
+    headshot: {
+      fields: {
+        title: 'Thomas Anderson Headshot',
+        description: 'Professional headshot',
+        file: {
+          url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop',
+          fileName: 'thomas-headshot.jpg',
+          contentType: 'image/jpeg',
+          details: {
+            size: 50000,
+            image: {
+              width: 400,
+              height: 400
+            }
+          }
+        }
+      },
+      sys: {
+        id: '9',
+        type: 'Asset',
+        createdAt: '2024-01-01',
+        updatedAt: '2024-01-01',
+        locale: 'en-US'
+      }
+    },
+    email: 'thomas.anderson@stanford.edu',
+    linkedinUrl: 'https://linkedin.com/in/thomasanderson',
+    countryCode: 'US',
+    type: 'collaborator'
+  },
+  {
+    firstName: 'Yuki',
+    lastName: 'Tanaka',
+    position: 'Senior Researcher, University of Tokyo',
+    description: 'Collaborating on cross-cultural accessibility studies and international inclusive design standards.',
+    headshot: {
+      fields: {
+        title: 'Yuki Tanaka Headshot',
+        description: 'Professional headshot',
+        file: {
+          url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
+          fileName: 'yuki-headshot.jpg',
+          contentType: 'image/jpeg',
+          details: {
+            size: 50000,
+            image: {
+              width: 400,
+              height: 400
+            }
+          }
+        }
+      },
+      sys: {
+        id: '10',
+        type: 'Asset',
+        createdAt: '2024-01-01',
+        updatedAt: '2024-01-01',
+        locale: 'en-US'
+      }
+    },
+    linkedinUrl: 'https://linkedin.com/in/yukitanaka',
+    countryCode: 'JP',
+    type: 'collaborator'
   }
 ]
 

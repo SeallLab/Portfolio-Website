@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { createClient } from "contentful"
-import type { TeamMember, GalleryImage } from "../types/Contentful"
+import type { LabDirector, TeamMember, GalleryImage } from "../types/Contentful"
 
 const client = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
@@ -10,6 +10,7 @@ const client = createClient({
 export const ContentfulContext = createContext({})
 
 export const ContentfulProvider = ({ children }: { children: React.ReactNode }) => {
+    const [labDirector, setLabDirector] = useState<LabDirector | null>(null)
     const [teamMembers, setTeamMembers] = useState<TeamMember[]>([])
     const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
     const [loading, setLoading] = useState(false)
@@ -19,6 +20,15 @@ export const ContentfulProvider = ({ children }: { children: React.ReactNode }) 
         
         const fetchData = async () => {
             try {
+                // Fetch lab director (single entry)
+                const directorResponse = await client.getEntries({
+                    content_type: "labDirector",
+                    limit: 1,
+                })
+                if (directorResponse.items.length > 0) {
+                    setLabDirector(directorResponse.items[0].fields as LabDirector)
+                }
+
                 // Fetch team members
                 const teamResponse = await client.getEntries({
                     content_type: "teamMembers",
@@ -41,7 +51,7 @@ export const ContentfulProvider = ({ children }: { children: React.ReactNode }) 
     }, [])
 
     return (
-        <ContentfulContext.Provider value={{ teamMembers, setTeamMembers, galleryImages, setGalleryImages, loading }}>
+        <ContentfulContext.Provider value={{ labDirector, setLabDirector, teamMembers, setTeamMembers, galleryImages, setGalleryImages, loading }}>
             {children}
         </ContentfulContext.Provider>
     )

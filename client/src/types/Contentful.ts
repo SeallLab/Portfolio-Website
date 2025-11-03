@@ -24,19 +24,40 @@ export type Image = {
     }
 }
 
-export type TeamMember = {
+export type LabDirector = {
   firstName: string
   lastName: string
+  position: string
   description: string
   headshot: Image
   countryCode?: string
   email?: string
   linkedinUrl?: string
-  current?: boolean
+  twitterUrl?: string
+  googleScholarUrl?: string
+  phone?: string
+  cvUrl?: string
+}
+
+export type TeamMember = {
+  firstName: string
+  lastName: string
+  position?: string
+  description: string
+  headshot: Image
+  countryCode?: string
+  email?: string
+  linkedinUrl?: string
+  type?: 'current' | 'alumni' | 'collaborator'
 }
 
 export type GalleryImage = {
     title?: string
     description?: string
+    image: Image
+}
+
+export type Sponsor = {
+    name: string
     image: Image
 }
