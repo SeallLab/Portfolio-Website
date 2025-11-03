@@ -61,3 +61,42 @@ export type Sponsor = {
   name: string;
   image: Image;
 };
+
+export type ResearchFocus = {
+  title: string;
+  description: string;
+  focusAreas: string[];
+  order?: number;
+};
+
+export type ResearchProject = {
+  title: string;
+  description: string;
+  image?: Image;
+  tags?: string[];
+  order?: number;
+};
+
+export type Publication = {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: number;
+  abstract?: string;
+  pdfUrl?: string;
+  doi?: string;
+  bibtex?: string;
+  tags?: string[];
+  type: "conference" | "journal" | "workshop" | "preprint";
+  order?: number;
+};
+
+export type Software = {
+  name: string;
+  description: string;
+  icon?: Image;
+  url?: string;
+  githubUrl?: string;
+  tags?: string[];
+  order?: number;
+};

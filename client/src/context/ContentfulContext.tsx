@@ -4,6 +4,10 @@ import type {
   LabDirector,
   TeamMember,
   GalleryImage,
+  ResearchFocus,
+  ResearchProject,
+  Publication,
+  Software,
 } from "../types/Contentful";
 
 const client = createClient({
@@ -21,6 +25,14 @@ export const ContentfulProvider = ({
   const [labDirector, setLabDirector] = useState<LabDirector | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [researchFocus, setResearchFocus] = useState<ResearchFocus | null>(
+    null,
+  );
+  const [researchProjects, setResearchProjects] = useState<ResearchProject[]>(
+    [],
+  );
+  const [publications, setPublications] = useState<Publication[]>([]);
+  const [software, setSoftware] = useState<Software[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -52,6 +64,39 @@ export const ContentfulProvider = ({
         setGalleryImages(
           galleryResponse.items.map((item) => item.fields as GalleryImage),
         );
+
+        // Fetch research focus
+        const focusResponse = await client.getEntries({
+          content_type: "researchFocus",
+          limit: 1,
+        });
+        if (focusResponse.items.length > 0) {
+          setResearchFocus(focusResponse.items[0].fields as ResearchFocus);
+        }
+
+        // Fetch research projects
+        const projectsResponse = await client.getEntries({
+          content_type: "researchProjects",
+        });
+        setResearchProjects(
+          projectsResponse.items.map((item) => item.fields as ResearchProject),
+        );
+
+        // Fetch publications
+        const publicationsResponse = await client.getEntries({
+          content_type: "publications",
+        });
+        setPublications(
+          publicationsResponse.items.map((item) => item.fields as Publication),
+        );
+
+        // Fetch software
+        const softwareResponse = await client.getEntries({
+          content_type: "software",
+        });
+        setSoftware(
+          softwareResponse.items.map((item) => item.fields as Software),
+        );
       } catch (error) {
         console.error("Error fetching Contentful data:", error);
       } finally {
@@ -71,6 +116,14 @@ export const ContentfulProvider = ({
         setTeamMembers,
         galleryImages,
         setGalleryImages,
+        researchFocus,
+        setResearchFocus,
+        researchProjects,
+        setResearchProjects,
+        publications,
+        setPublications,
+        software,
+        setSoftware,
         loading,
       }}
     >

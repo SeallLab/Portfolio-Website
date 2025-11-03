@@ -13,12 +13,8 @@ export default function Gallery() {
       <div className="mx-auto max-w-7xl px-6 pt-20 sm:pt-28 lg:px-8 pb-10 sm:pb-16">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Gallery
+            Photo Gallery
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            The software engineering for all labs images through conferences and
-            events.
-          </p>
         </div>
       </div>
 
