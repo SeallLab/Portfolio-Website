@@ -55,7 +55,7 @@ export default function NavBar() {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <>
+            <div key={item.name}>
                {item.dropdown && (
                  <Menu as="div" className="relative">
                    <MenuButton
@@ -90,7 +90,6 @@ export default function NavBar() {
               )}
               {!item.dropdown && (
                 <NavLink
-                  key={item.name}
                   to={item.href}
                   className={({ isActive }) =>
                     `text-sm/6 font-semibold ${
@@ -103,7 +102,7 @@ export default function NavBar() {
                   {item.name}
                 </NavLink>
               )}
-            </>
+            </div>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>

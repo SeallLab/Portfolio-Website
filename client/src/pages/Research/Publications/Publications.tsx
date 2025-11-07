@@ -1,9 +1,9 @@
 import PublicationItem from "./PublicationItem";
-import { mockPublications } from "./mockData";
-
+import { useContentful } from "../../../context/ContentfulContext";
+import type { Publication } from "../../../types/Contentful";
 export default function Publications() {
-  // Group publications by year
-  const publicationsByYear = mockPublications.reduce(
+  const { publications } = useContentful();
+  const publicationsByYear = publications?.reduce(
     (acc, pub) => {
       if (!acc[pub.year]) {
         acc[pub.year] = [];
@@ -11,7 +11,7 @@ export default function Publications() {
       acc[pub.year].push(pub);
       return acc;
     },
-    {} as Record<number, typeof mockPublications>,
+    {} as Record<number, Publication[]>,
   );
 
   // Get years in descending order

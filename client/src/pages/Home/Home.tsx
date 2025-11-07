@@ -4,23 +4,18 @@ import ResearchHighlights from "./ResearchHighlights";
 import DirectorSpotlight from "./DirectorSpotlight";
 import Sponsors from "./Sponsors";
 import CTASection from "./CTASection";
-import {
-  mockLabInfo,
-  mockDirectorBio,
-  mockResearchHighlights,
-  mockLabStatistics,
-  mockCTASection,
-} from "./mockData";
+import { useContentful } from "../../context/ContentfulContext";
 
 export default function Home() {
+  const { labStatistics, labDirector, labInfo, researchProjects } = useContentful()
   return (
     <div className="bg-white">
-      <HeroSection labInfo={mockLabInfo} statistics={mockLabStatistics} />
-      <LabOverview labInfo={mockLabInfo} />
-      <ResearchHighlights highlights={mockResearchHighlights} />
-      <DirectorSpotlight director={mockDirectorBio} />
+      <HeroSection labInfo={labInfo} statistics={labStatistics} />
+      <LabOverview labInfo={labInfo} />
+      <ResearchHighlights highlights={researchProjects} />
+      <DirectorSpotlight director={labDirector} />
       <Sponsors />
-      <CTASection cta={mockCTASection} />
+      <CTASection />
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import type { LabInfo } from "../../types/Contentful";
 
 interface LabOverviewProps {
-  labInfo: LabInfo;
+  labInfo: LabInfo | null;
 }
 
 export default function LabOverview({ labInfo }: LabOverviewProps) {
+  if (!labInfo) {
+    return null;
+  }
   const pillars = [
     {
       title: labInfo.missionTitle,

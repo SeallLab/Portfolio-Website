@@ -1,12 +1,8 @@
-import { Link } from "react-router-dom";
-import { ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-import type { CTASection as CTASectionType } from "../../types/Contentful";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { useContentful } from "../../context/ContentfulContext";
 
-interface CTASectionProps {
-  cta: CTASectionType;
-}
-
-export default function CTASection({ cta }: CTASectionProps) {
+export default function CTASection() {
+  const { labDirector } = useContentful();
   return (
     <div className="bg-white py-24 sm:py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -25,29 +21,21 @@ export default function CTASection({ cta }: CTASectionProps) {
           <div className="mx-auto max-w-2xl text-center">
             {/* Headline */}
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              {cta.headline}
+                {CTASectionContent.headline}              
             </h2>
 
             {/* Subtitle */}
             <p className="mt-6 text-lg leading-8 text-blue-100">
-              {cta.subtitle}
+              {CTASectionContent.subtitle}
             </p>
 
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to={cta.primaryButtonLink}
-                className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3.5 text-base font-semibold text-blue-600 shadow-sm transition-all duration-200 hover:bg-blue-50 hover:scale-105 w-full sm:w-auto justify-center"
-              >
-                {cta.primaryButtonText}
-                <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-
               <a
-                href={cta.secondaryButtonLink}
+                href={`mailto:${labDirector?.email}`}
                 className="flex items-center gap-2 rounded-lg border-2 border-white bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-white hover:text-blue-600 hover:scale-105 w-full sm:w-auto justify-center"
               >
-                {cta.secondaryButtonText}
+                {CTASectionContent.primaryButtonText}
                 <EnvelopeIcon className="h-5 w-5" />
               </a>
             </div>
@@ -57,4 +45,11 @@ export default function CTASection({ cta }: CTASectionProps) {
     </div>
   );
 }
+
+const CTASectionContent = {
+  headline: "Join Us in Making Software Engineering Accessible to All",
+  subtitle:
+    "Whether you're a prospective student, industry partner, or fellow researcher, we'd love to hear from you. Let's work together to build more inclusive technology.",
+  primaryButtonText: "Contact Us",
+};
 

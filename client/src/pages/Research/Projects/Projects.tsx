@@ -1,9 +1,10 @@
 import ProjectCard from "./ProjectCard";
-import { mockProjects } from "./mockData";
+import { useContentful } from "../../../context/ContentfulContext";
 
 export default function Projects() {
+  const { researchProjects } = useContentful();
   // Sort projects by order
-  const sortedProjects = [...mockProjects].sort(
+  const sortedProjects = researchProjects.sort(
     (a, b) => (a.order || 0) - (b.order || 0),
   );
 

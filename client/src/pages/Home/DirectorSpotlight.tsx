@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import type { DirectorBio } from "../../types/Contentful";
+import type { LabDirector } from "../../types/Contentful";
 
 interface DirectorSpotlightProps {
-  director: DirectorBio;
+  director: LabDirector | null;
 }
 
 export default function DirectorSpotlight({ director }: DirectorSpotlightProps) {
+  if (!director) {
+    return null;
+  }
   const imageUrl = director.headshot.fields.file.url.startsWith("//")
     ? `https:${director.headshot.fields.file.url}`
     : director.headshot.fields.file.url;
 
-  const bioParagraphs = director.bio.split("\n\n").filter((p) => p.trim());
+  const bioParagraphs = director?.description?.split("\n\n").filter((p) => p.trim());
 
   return (
     <div className="bg-white py-24 sm:py-12">
@@ -22,7 +25,7 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
               <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5">
                 <img
                   src={imageUrl}
-                  alt={director.name}
+                  alt={`${director.firstName} ${director.lastName}`}
                   className="w-full object-cover"
                 />
               </div>  
@@ -33,15 +36,15 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
           <div>
             <div className="mb-6">
               <h3 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                {director.name}
+                {`${director.firstName} ${director.lastName}`}
               </h3>
               <p className="mt-2 text-lg font-medium text-blue-600">
-                {director.title}
+                {director.position}
               </p>
             </div>
 
             <div className="prose prose-lg max-w-none">
-              {bioParagraphs.map((paragraph, index) => (
+              {bioParagraphs?.map((paragraph, index) => (
                 <p key={index} className="text-base leading-7 text-gray-600 mb-6">
                   {paragraph}
                 </p>

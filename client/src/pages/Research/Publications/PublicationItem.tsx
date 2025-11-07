@@ -70,7 +70,7 @@ export default function PublicationItem({
 
         {/* Venue and Year */}
         <p className="text-sm text-gray-600">
-          {venue}, {year}
+          {venue ? `${venue}, ${year}` : year}
         </p>
 
         {/* Action Links */}

@@ -2,9 +2,10 @@ import type { GalleryImage } from "../../types/Contentful";
 
 interface GalleryCardProps {
   galleryImage: GalleryImage;
+  onClick: () => void;
 }
 
-export default function GalleryCard({ galleryImage }: GalleryCardProps) {
+export default function GalleryCard({ galleryImage, onClick }: GalleryCardProps) {
   const { title, description, image } = galleryImage;
   const imageUrl = image.fields.file.url.startsWith("//")
     ? `https:${image.fields.file.url}`
@@ -12,7 +13,18 @@ export default function GalleryCard({ galleryImage }: GalleryCardProps) {
   const hasOverlayContent = title || description;
 
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-gray-100 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-xl">
+    <div 
+      className="group relative overflow-hidden rounded-lg bg-gray-100 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-xl cursor-pointer"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+    >
       {/* Image */}
       <div className="aspect-4/3 w-full overflow-hidden">
         <img

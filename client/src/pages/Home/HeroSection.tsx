@@ -3,8 +3,8 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import type { LabInfo, LabStatistics } from "../../types/Contentful";
 
 interface HeroSectionProps {
-  labInfo: LabInfo;
-  statistics: LabStatistics;
+  labInfo: LabInfo | null;
+  statistics: LabStatistics | null;
 }
 
 export default function HeroSection({ labInfo, statistics }: HeroSectionProps) {
@@ -15,10 +15,10 @@ export default function HeroSection({ labInfo, statistics }: HeroSectionProps) {
           <div className="lg:col-span-7">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
-                {labInfo.heroHeadline}
+                {labInfo?.heroHeadline}
               </h1>
               <p className="mt-8 text-lg leading-8 text-gray-600 sm:text-xl">
-                {labInfo.heroTagline}
+                {labInfo?.heroTagline}
               </p>
 
               <div className="mt-10 flex items-center gap-x-6">
@@ -40,25 +40,25 @@ export default function HeroSection({ labInfo, statistics }: HeroSectionProps) {
               <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4 sm:gap-x-8">
                 <div className="border-l-2 border-blue-600 pl-4">
                   <p className="text-3xl font-bold text-gray-900">
-                    {statistics.publicationsCount}+
+                    {statistics?.publicationsCount}+
                   </p>
                   <p className="text-sm text-gray-600">Publications</p>
                 </div>
                 <div className="border-l-2 border-green-600 pl-4">
                   <p className="text-3xl font-bold text-gray-900">
-                    {statistics.projectsCount}+
+                    {statistics?.projectsCount}+
                   </p>
                   <p className="text-sm text-gray-600">Projects</p>
                 </div>
                 <div className="border-l-2 border-purple-600 pl-4">
                   <p className="text-3xl font-bold text-gray-900">
-                    {statistics.teamMembersCount}+
+                    {statistics?.teamMembersCount}+
                   </p>
                   <p className="text-sm text-gray-600">Team Members</p>
                 </div>
                 <div className="border-l-2 border-orange-600 pl-4">
                   <p className="text-3xl font-bold text-gray-900">
-                    {statistics.yearsOfResearch}+
+                    {statistics?.yearsOfResearch}+
                   </p>
                   <p className="text-sm text-gray-600">Years</p>
                 </div>

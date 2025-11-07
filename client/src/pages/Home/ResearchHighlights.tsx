@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import type { ResearchHighlight } from "../../types/Contentful";
+import type { ResearchProject } from "../../types/Contentful";
 
 interface ResearchHighlightsProps {
-  highlights: ResearchHighlight[];
+  highlights: ResearchProject[];
 }
 
 export default function ResearchHighlights({
@@ -11,7 +11,7 @@ export default function ResearchHighlights({
 }: ResearchHighlightsProps) {
   const sortedHighlights = [...highlights].sort(
     (a, b) => (a.order || 0) - (b.order || 0),
-  );
+  ).slice(0, 3);
 
   return (
     <div className="bg-gray-50 py-24 sm:py-12">
@@ -20,17 +20,13 @@ export default function ResearchHighlights({
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
             Research Focus Areas
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Exploring the intersection of software engineering, artificial
-            intelligence, and human-centered design.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
           {sortedHighlights.map((highlight, index) => (
             <Link
               key={index}
-              to={highlight.link}
+              to={"/research/projects"}
               className={`group relative flex flex-col overflow-hidden rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}
             >
               <div className="relative flex flex-col flex-grow">

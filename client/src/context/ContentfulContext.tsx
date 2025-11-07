@@ -9,10 +9,8 @@ import type {
   Publication,
   Software,
   LabInfo,
-  DirectorBio,
-  ResearchHighlight,
   LabStatistics,
-  CTASection,
+  Sponsor,
 } from "../types/Contentful";
 
 const client = createClient({
@@ -20,7 +18,33 @@ const client = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
 });
 
-export const ContentfulContext = createContext({});
+export type ContentfulContextType = {
+  labDirector: LabDirector | null;
+  teamMembers: TeamMember[];
+  galleryImages: GalleryImage[];
+  researchFocus: ResearchFocus | null;
+  researchProjects: ResearchProject[];
+  publications: Publication[];
+  software: Software[];
+  labInfo: LabInfo | null;
+  labStatistics: LabStatistics | null;
+  sponsors: Sponsor[];
+  loading: boolean;
+};
+
+export const ContentfulContext = createContext<ContentfulContextType>({
+  labDirector: null,
+  teamMembers: [],
+  galleryImages: [],
+  researchFocus: null,
+  researchProjects: [],
+  publications: [],
+  software: [],
+  labInfo: null,
+  labStatistics: null,
+  sponsors: [],
+  loading: false,
+});
 
 export const ContentfulProvider = ({
   children,
@@ -39,16 +63,11 @@ export const ContentfulProvider = ({
   const [publications, setPublications] = useState<Publication[]>([]);
   const [software, setSoftware] = useState<Software[]>([]);
   const [labInfo, setLabInfo] = useState<LabInfo | null>(null);
-  const [directorBio, setDirectorBio] = useState<DirectorBio | null>(null);
-  const [researchHighlights, setResearchHighlights] = useState<
-    ResearchHighlight[]
-  >([]);
   const [labStatistics, setLabStatistics] = useState<LabStatistics | null>(
     null,
   );
-  const [ctaSection, setCtaSection] = useState<CTASection | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const [sponsors, setSponsors] = useState<Sponsor[]>([]);
   useEffect(() => {
     setLoading(true);
 
@@ -73,7 +92,7 @@ export const ContentfulProvider = ({
 
         // Fetch gallery images
         const galleryResponse = await client.getEntries({
-          content_type: "galleryImages",
+          content_type: "galleryImage",
         });
         setGalleryImages(
           galleryResponse.items.map((item) => item.fields as GalleryImage),
@@ -90,7 +109,7 @@ export const ContentfulProvider = ({
 
         // Fetch research projects
         const projectsResponse = await client.getEntries({
-          content_type: "researchProjects",
+          content_type: "ResearchProject",
         });
         setResearchProjects(
           projectsResponse.items.map((item) => item.fields as ResearchProject),
@@ -98,7 +117,7 @@ export const ContentfulProvider = ({
 
         // Fetch publications
         const publicationsResponse = await client.getEntries({
-          content_type: "publications",
+          content_type: "publication",
         });
         setPublications(
           publicationsResponse.items.map((item) => item.fields as Publication),
@@ -121,23 +140,6 @@ export const ContentfulProvider = ({
           setLabInfo(labInfoResponse.items[0].fields as LabInfo);
         }
 
-        // Fetch director bio
-        const directorBioResponse = await client.getEntries({
-          content_type: "directorBio",
-          limit: 1,
-        });
-        if (directorBioResponse.items.length > 0) {
-          setDirectorBio(directorBioResponse.items[0].fields as DirectorBio);
-        }
-
-        // Fetch research highlights
-        const highlightsResponse = await client.getEntries({
-          content_type: "researchHighlights",
-        });
-        setResearchHighlights(
-          highlightsResponse.items.map((item) => item.fields as ResearchHighlight),
-        );
-
         // Fetch lab statistics
         const statisticsResponse = await client.getEntries({
           content_type: "labStatistics",
@@ -147,14 +149,14 @@ export const ContentfulProvider = ({
           setLabStatistics(statisticsResponse.items[0].fields as LabStatistics);
         }
 
-        // Fetch CTA section
-        const ctaResponse = await client.getEntries({
-          content_type: "ctaSection",
-          limit: 1,
+        // Sponsors
+        const sponsorsResponse = await client.getEntries({
+          content_type: "sponsorType",
         });
-        if (ctaResponse.items.length > 0) {
-          setCtaSection(ctaResponse.items[0].fields as CTASection);
-        }
+        setSponsors(
+          sponsorsResponse.items.map((item) => item.fields as Sponsor),
+        );
+
       } catch (error) {
         console.error("Error fetching Contentful data:", error);
       } finally {
@@ -169,29 +171,15 @@ export const ContentfulProvider = ({
     <ContentfulContext.Provider
       value={{
         labDirector,
-        setLabDirector,
         teamMembers,
-        setTeamMembers,
         galleryImages,
-        setGalleryImages,
         researchFocus,
-        setResearchFocus,
         researchProjects,
-        setResearchProjects,
         publications,
-        setPublications,
         software,
-        setSoftware,
         labInfo,
-        setLabInfo,
-        directorBio,
-        setDirectorBio,
-        researchHighlights,
-        setResearchHighlights,
         labStatistics,
-        setLabStatistics,
-        ctaSection,
-        setCtaSection,
+        sponsors,
         loading,
       }}
     >

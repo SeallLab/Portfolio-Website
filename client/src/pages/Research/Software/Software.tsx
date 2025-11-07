@@ -1,8 +1,9 @@
 import SoftwareCard from "./SoftwareCard";
-import { mockSoftware } from "./mockData";
+import { useContentful } from "../../../context/ContentfulContext";
 
 export default function Software() {
-  const sortedSoftware = [...mockSoftware].sort(
+  const { software } = useContentful();
+  const sortedSoftware = software?.sort(
     (a, b) => (a.order || 0) - (b.order || 0),
   );
 

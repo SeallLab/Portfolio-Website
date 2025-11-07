@@ -1,13 +1,9 @@
-// import { useContentful } from '../../context/ContentfulContext'
+import { useContentful } from '../../context/ContentfulContext'
 import LabDirectorCard from "./LabDirectorCard";
 import TeamMemberCard from "./TeamMemberCard";
-import { mockLabDirector, mockTeamMembers } from "./mockData";
 
 export default function Team() {
-  // TODO: Replace mock data with Contentful data
-  // const { labDirector, teamMembers, loading } = useContentful()
-  const labDirector = mockLabDirector;
-  const teamMembers = mockTeamMembers;
+  const { teamMembers, labDirector } = useContentful()
 
   // Filter team members by type
   const currentMembers = teamMembers.filter(
@@ -22,7 +18,9 @@ export default function Team() {
     <div className="bg-white min-h-screen">
       {/* Lab Director Section */}
       <div className="mx-auto max-w-7xl px-6 pt-20 sm:pt-28 lg:px-8 pb-16 sm:pb-20">
-        <LabDirectorCard director={labDirector} />
+        {labDirector && (
+          <LabDirectorCard director={labDirector} />
+        )}
       </div>
 
       {/* Our Team Title */}

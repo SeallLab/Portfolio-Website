@@ -42,13 +42,13 @@ export type LabDirector = {
 export type TeamMember = {
   firstName: string;
   lastName: string;
-  position?: string;
   description: string;
   headshot: Image;
   countryCode?: string;
   email?: string;
   linkedinUrl?: string;
-  type?: "current" | "alumni" | "collaborator";
+  type: "current" | "alumni" | "collaborator";
+  position?: string;
 };
 
 export type GalleryImage = {
@@ -66,7 +66,6 @@ export type ResearchFocus = {
   title: string;
   description: string;
   focusAreas: string[];
-  order?: number;
 };
 
 export type ResearchProject = {
@@ -80,7 +79,7 @@ export type ResearchProject = {
 export type Publication = {
   title: string;
   authors: string[];
-  venue: string;
+  venue?: string;
   year: number;
   abstract?: string;
   pdfUrl?: string;
@@ -112,38 +111,9 @@ export type LabInfo = {
   impactDescription: string;
 };
 
-export type DirectorBio = {
-  name: string;
-  title: string;
-  headshot: Image;
-  bio: string;
-  email?: string;
-  linkedinUrl?: string;
-  googleScholarUrl?: string;
-  twitterUrl?: string;
-};
-
-export type ResearchHighlight = {
-  title: string;
-  description: string;
-  image?: Image;
-  link: string;
-  featured?: boolean;
-  order?: number;
-};
-
 export type LabStatistics = {
   publicationsCount: number;
   projectsCount: number;
   teamMembersCount: number;
   yearsOfResearch: number;
-};
-
-export type CTASection = {
-  headline: string;
-  subtitle: string;
-  primaryButtonText: string;
-  primaryButtonLink: string;
-  secondaryButtonText: string;
-  secondaryButtonLink: string;
 };
