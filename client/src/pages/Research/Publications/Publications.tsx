@@ -1,25 +1,25 @@
-import PublicationItem from "./PublicationItem";
-import { useContentful } from "../../../context/ContentfulContext";
-import type { Publication } from "../../../types/Contentful";
+// import PublicationItem from "./PublicationItem";
+// import { useContentful } from "../../../context/ContentfulContext";
+// import type { Publication } from "../../../types/Contentful";
 import { GoogleScholarIcon, ResearchGateIcon } from "../../../components/Icons";
 
 export default function Publications() {
-  const { publications } = useContentful();
+  // const { publications } = useContentful();
 
-  const publicationsByYear = publications?.reduce(
-    (acc, pub) => {
-      if (!acc[pub.year]) {
-        acc[pub.year] = [];
-      }
-      acc[pub.year].push(pub);
-      return acc;
-    },
-    {} as Record<number, Publication[]>,
-  );
+  // const publicationsByYear = publications?.reduce(
+  //   (acc, pub) => {
+  //     if (!acc[pub.year]) {
+  //       acc[pub.year] = [];
+  //     }
+  //     acc[pub.year].push(pub);
+  //     return acc;
+  //   },
+  //   {} as Record<number, Publication[]>,
+  // );
 
-  const years = Object.keys(publicationsByYear)
-    .map(Number)
-    .sort((a, b) => b - a);
+  // const years = Object.keys(publicationsByYear)
+  //   .map(Number)
+  //   .sort((a, b) => b - a);
 
   return (
     <div className="bg-white min-h-screen">
