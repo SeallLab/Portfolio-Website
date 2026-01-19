@@ -70,8 +70,8 @@ export default function HeroSection({ labInfo, statistics }: HeroSectionProps) {
             <div className="relative">
               <div className="relative flex h-96 items-center justify-center">
                 <img
-                  src="/SE-ALL.png"
-                  alt="SE-ALL Lab"
+                  src="/LabLogo.png"
+                  alt="Plurise Lab"
                   className="h-64 w-auto object-contain drop-shadow-2xl"
                 />
               </div>

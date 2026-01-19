@@ -17,7 +17,7 @@ export default function Projects() {
             Research Projects
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Explore the diverse themes and projects we work on at SE-ALL Lab,
+            Explore the diverse themes and projects we work on at Plurise Lab,
             advancing software engineering for all.
           </p>
         </div>

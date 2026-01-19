@@ -28,7 +28,7 @@ function App() {
   }, [pathname]);
 
   useEffect(() => {
-    document.title = pageTitle ? `${pageTitle} | SE-ALL Lab` : "SE-ALL Lab";
+    document.title = pageTitle ? `${pageTitle} | Plurise Lab` : "Plurise Lab";
   }, [pageTitle]);
 
   return (

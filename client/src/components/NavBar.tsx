@@ -35,9 +35,9 @@ export default function NavBar() {
       >
         <div className="flex lg:flex-1 items-center gap-2">
           <NavLink to="/" className="-m-1.5 p-1.5">
-            <img alt="" src="SE-ALL.png" className="h-8 w-auto" />
+            <img alt="" src="LabLogo.png" className="h-8 w-auto" />
           </NavLink>
-          <span className="text-xl font-semibold">SE-ALL Lab</span>
+          <span className="text-xl font-semibold">Plurise Lab</span>
         </div>
 
         <div className="flex lg:hidden">
@@ -122,9 +122,9 @@ export default function NavBar() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <NavLink to="/" className="-m-1.5 p-1.5">
-                <img alt="" src="SE-ALL.png" className="h-8 w-auto" />
+                <img alt="" src="LabLogo.png" className="h-8 w-auto" />
               </NavLink>
-              <span className="text-xl font-semibold">SE-ALL Lab</span>
+              <span className="text-xl font-semibold">Plurise Lab</span>
             </div>
             <button
               type="button"

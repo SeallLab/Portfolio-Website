@@ -62,7 +62,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center">
             <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} Software Engineering for All
+              &copy; {new Date().getFullYear()} Plurise
               Lab. All rights reserved.
             </p>
           </div>
