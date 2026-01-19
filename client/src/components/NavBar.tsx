@@ -5,28 +5,24 @@ import {
   XMarkIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import {
-  Dialog,
-  DialogPanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
+import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const researchDropdown = [
   { name: "Focus", href: "/research/focus" },
   { name: "Projects", href: "/research/projects" },
   { name: "Publications", href: "/research/publications" },
-  { name: "Software", href: "/research/software" },
+  // removed Software from dropdown
 ];
 
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Research", href: "/research", dropdown: researchDropdown },
+  // added Software as a main link right after Research
+  { name: "Software", href: "/research/software" },
   { name: "Team", href: "/team" },
   { name: "Gallery", href: "/gallery" },
 ];
+
 export default function NavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -39,10 +35,11 @@ export default function NavBar() {
       >
         <div className="flex lg:flex-1 items-center gap-2">
           <NavLink to="/" className="-m-1.5 p-1.5">
-            <img alt="" src="SE-ALL.png" className="h-8 w-auto" />
+            <img alt="" src="LabLogo.png" className="h-8 w-auto" />
           </NavLink>
-          <span className="text-xl font-semibold">SE-ALL Lab</span>
+          <span className="text-xl font-semibold">Plurise Lab</span>
         </div>
+
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -53,34 +50,36 @@ export default function NavBar() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
+
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <div key={item.name}>
-               {item.dropdown && (
-                 <Menu as="div" className="relative">
-                   <MenuButton
-                     className={`cursor-pointer flex items-center gap-x-1 text-sm/6 font-semibold ${
-                       location.pathname.startsWith("/research")
-                         ? "text-blue-600"
-                         : "text-gray-900 hover:text-blue-600"
-                     }`}
-                   >
-                     {item.name}
-                     <ChevronDownIcon aria-hidden="true" className="size-4" />
-                   </MenuButton>
+              {item.dropdown && (
+                <Menu as="div" className="relative">
+                  <MenuButton
+                    className={`cursor-pointer flex items-center gap-x-1 text-sm/6 font-semibold ${
+                      location.pathname.startsWith("/research")
+                        ? "text-blue-600"
+                        : "text-gray-900 hover:text-blue-600"
+                    }`}
+                  >
+                    {item.name}
+                    <ChevronDownIcon aria-hidden="true" className="size-4" />
+                  </MenuButton>
+
                   <MenuItems className="absolute -left-8 top-full z-10 mt-3 w-48 overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                    {item.dropdown.map((item) => (
-                      <MenuItem key={item.name}>
+                    {item.dropdown.map((ddItem) => (
+                      <MenuItem key={ddItem.name}>
                         {({ active }) => (
                           <NavLink
-                            to={item.href}
+                            to={ddItem.href}
                             className={`block px-4 py-2 text-sm/6 font-semibold ${
                               active
                                 ? "bg-blue-50 text-blue-600"
                                 : "text-gray-900"
                             }`}
                           >
-                            {item.name}
+                            {ddItem.name}
                           </NavLink>
                         )}
                       </MenuItem>
@@ -88,12 +87,16 @@ export default function NavBar() {
                   </MenuItems>
                 </Menu>
               )}
+
               {!item.dropdown && (
                 <NavLink
                   to={item.href}
                   className={({ isActive }) =>
                     `text-sm/6 font-semibold ${
-                      isActive
+                      // Make "Software" highlight when on /research/software
+                      isActive ||
+                      (item.href === "/research/software" &&
+                        location.pathname.startsWith("/research/software"))
                         ? "text-blue-600"
                         : "text-gray-900 hover:text-blue-600"
                     }`
@@ -105,8 +108,10 @@ export default function NavBar() {
             </div>
           ))}
         </div>
+
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
+
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
@@ -117,9 +122,9 @@ export default function NavBar() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <NavLink to="/" className="-m-1.5 p-1.5">
-                <img alt="" src="SE-ALL.png" className="h-8 w-auto" />
+                <img alt="" src="LabLogo.png" className="h-8 w-auto" />
               </NavLink>
-              <span className="text-xl font-semibold">SE-ALL Lab</span>
+              <span className="text-xl font-semibold">Plurise Lab</span>
             </div>
             <button
               type="button"
@@ -130,6 +135,7 @@ export default function NavBar() {
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
+
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
@@ -165,7 +171,9 @@ export default function NavBar() {
                         onClick={() => setMobileMenuOpen(false)}
                         className={({ isActive }) =>
                           `-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${
-                            isActive
+                            isActive ||
+                            (item.href === "/research/software" &&
+                              location.pathname.startsWith("/research/software"))
                               ? "bg-blue-50 text-blue-600"
                               : "text-gray-900 hover:bg-gray-50"
                           }`

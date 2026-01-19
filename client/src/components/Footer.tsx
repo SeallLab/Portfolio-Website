@@ -4,6 +4,7 @@ import {
   EnvelopeIcon,
   TwitterIcon,
   PhoneIcon,
+  UniversityIcon,
 } from "./Icons";
 
 export default function Footer() {
@@ -27,6 +28,11 @@ export default function Footer() {
       name: "X (Twitter)",
       href: "https://x.com/softwaronnie",
       icon: TwitterIcon,
+    },
+    {
+      name: "University Profile",
+      href: "https://profiles.ucalgary.ca/ronnie-de-souza-santos",
+      icon: UniversityIcon,
     },
   ];
 
@@ -62,7 +68,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center">
             <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} Software Engineering for All
+              &copy; {new Date().getFullYear()} PLURISE
               Lab. All rights reserved.
             </p>
           </div>

@@ -22,13 +22,13 @@ export default function DirectorSpotlight({ director }: DirectorSpotlightProps) 
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-16 lg:items-start">
           <div className="relative mb-12 lg:mb-0 lg:sticky lg:top-24">
             <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5 max-w-sm mx-auto">
                 <img
                   src={imageUrl}
                   alt={`${director.firstName} ${director.lastName}`}
                   className="w-full object-cover"
                 />
-              </div>  
+              </div>
 
             </div>
           </div>

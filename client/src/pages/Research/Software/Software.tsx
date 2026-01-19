@@ -16,7 +16,7 @@ export default function Software() {
             Software
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Tools and applications developed by the SE-ALL Lab.
+            Tools and applications developed by the Plurise Lab.
           </p>
         </div>
       </div>
