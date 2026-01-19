@@ -1,25 +1,25 @@
-import PublicationItem from "./PublicationItem";
-import { useContentful } from "../../../context/ContentfulContext";
-import type { Publication } from "../../../types/Contentful";
+// import PublicationItem from "./PublicationItem";
+// import { useContentful } from "../../../context/ContentfulContext";
+// import type { Publication } from "../../../types/Contentful";
 import { GoogleScholarIcon, ResearchGateIcon } from "../../../components/Icons";
 
 export default function Publications() {
-  const { publications } = useContentful();
+  // const { publications } = useContentful();
 
-  const publicationsByYear = publications?.reduce(
-    (acc, pub) => {
-      if (!acc[pub.year]) {
-        acc[pub.year] = [];
-      }
-      acc[pub.year].push(pub);
-      return acc;
-    },
-    {} as Record<number, Publication[]>,
-  );
+  // const publicationsByYear = publications?.reduce(
+  //   (acc, pub) => {
+  //     if (!acc[pub.year]) {
+  //       acc[pub.year] = [];
+  //     }
+  //     acc[pub.year].push(pub);
+  //     return acc;
+  //   },
+  //   {} as Record<number, Publication[]>,
+  // );
 
-  const years = Object.keys(publicationsByYear)
-    .map(Number)
-    .sort((a, b) => b - a);
+  // const years = Object.keys(publicationsByYear)
+  //   .map(Number)
+  //   .sort((a, b) => b - a);
 
   return (
     <div className="bg-white min-h-screen">
@@ -77,10 +77,11 @@ export default function Publications() {
       </div>
 
       {/* Publications Section */}
+      {/* Publications Section */}
       <div className="mx-auto max-w-5xl px-6 pb-32 lg:px-8">
+        {/*
         {years.map((year, yearIndex) => (
           <div key={year} className={yearIndex > 0 ? "mt-4" : ""}>
-            {/* Year Header */}
             <div className="mb-2">
               <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
                 {year}
@@ -96,7 +97,6 @@ export default function Publications() {
               />
             </div>
 
-            {/* Publications List */}
             <div className="rounded-lg bg-white">
               {publicationsByYear[year].map((publication, index) => (
                 <PublicationItem key={index} publication={publication} />
@@ -104,16 +104,18 @@ export default function Publications() {
             </div>
           </div>
         ))}
+        */}
 
         {/* Empty State */}
-        {years.length === 0 && (
+        {/* {years.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-gray-500">
               No publications to display at this time.
             </p>
           </div>
-        )}
+        )} */}
       </div>
+
     </div>
   );
 }
