@@ -68,6 +68,14 @@ export type ResearchFocus = {
   focusAreas: string[];
 };
 
+export type ResearchFocusArea = {
+  title: string;
+  description: string;
+  image?: Image;
+  tags?: string[];
+  order?: number;
+};
+
 export type ResearchProject = {
   title: string;
   description: string;
