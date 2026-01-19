@@ -3,14 +3,13 @@ import { useContentful } from "../../../context/ContentfulContext";
 
 export default function Projects() {
   const { researchProjects } = useContentful();
-  // Sort projects by order
-  const sortedProjects = researchProjects.sort(
+
+  const sortedProjects = [...researchProjects].sort(
     (a, b) => (a.order || 0) - (b.order || 0),
   );
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
       <div className="mx-auto max-w-7xl px-6 pt-20 sm:pt-28 lg:px-8 pb-10 sm:pb-16">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
@@ -23,7 +22,6 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Projects Section */}
       <div className="mx-auto max-w-7xl px-6 pb-32 lg:px-8">
         <div className="mb-12">
           <h2 className="text-3xl font-semibold tracking-tight text-gray-900">
@@ -33,12 +31,14 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {sortedProjects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+          {sortedProjects.map((project) => (
+            <ProjectCard
+              key={`${project.title}-${project.order ?? ""}`}
+              project={project}
+            />
           ))}
         </div>
 
-        {/* Empty State */}
         {sortedProjects.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-gray-500">

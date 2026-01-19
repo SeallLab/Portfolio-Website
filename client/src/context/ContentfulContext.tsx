@@ -5,6 +5,7 @@ import type {
   TeamMember,
   GalleryImage,
   ResearchFocus,
+  ResearchFocusArea,
   ResearchProject,
   Publication,
   Software,
@@ -23,6 +24,10 @@ export type ContentfulContextType = {
   teamMembers: TeamMember[];
   galleryImages: GalleryImage[];
   researchFocus: ResearchFocus | null;
+
+  // ✅ Research Focus Areas
+  researchFocusAreas: ResearchFocusArea[];
+
   researchProjects: ResearchProject[];
   publications: Publication[];
   software: Software[];
@@ -37,6 +42,7 @@ export const ContentfulContext = createContext<ContentfulContextType>({
   teamMembers: [],
   galleryImages: [],
   researchFocus: null,
+  researchFocusAreas: [],
   researchProjects: [],
   publications: [],
   software: [],
@@ -54,9 +60,13 @@ export const ContentfulProvider = ({
   const [labDirector, setLabDirector] = useState<LabDirector | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
-  const [researchFocus, setResearchFocus] = useState<ResearchFocus | null>(
-    null,
-  );
+  const [researchFocus, setResearchFocus] = useState<ResearchFocus | null>(null);
+
+  // ✅ Research Focus Areas state
+  const [researchFocusAreas, setResearchFocusAreas] = useState<
+    ResearchFocusArea[]
+  >([]);
+
   const [researchProjects, setResearchProjects] = useState<ResearchProject[]>(
     [],
   );
@@ -68,12 +78,13 @@ export const ContentfulProvider = ({
   );
   const [loading, setLoading] = useState(false);
   const [sponsors, setSponsors] = useState<Sponsor[]>([]);
+
   useEffect(() => {
     setLoading(true);
 
     const fetchData = async () => {
       try {
-        // Fetch lab director (single entry)
+        // Lab Director
         const directorResponse = await client.getEntries({
           content_type: "labDirector",
           limit: 1,
@@ -82,7 +93,7 @@ export const ContentfulProvider = ({
           setLabDirector(directorResponse.items[0].fields as LabDirector);
         }
 
-        // Fetch team members
+        // Team Members
         const teamResponse = await client.getEntries({
           content_type: "teamMembers",
         });
@@ -90,7 +101,7 @@ export const ContentfulProvider = ({
           teamResponse.items.map((item) => item.fields as TeamMember),
         );
 
-        // Fetch gallery images
+        // Gallery Images
         const galleryResponse = await client.getEntries({
           content_type: "galleryImage",
         });
@@ -98,7 +109,7 @@ export const ContentfulProvider = ({
           galleryResponse.items.map((item) => item.fields as GalleryImage),
         );
 
-        // Fetch research focus
+        // Research Focus (single)
         const focusResponse = await client.getEntries({
           content_type: "researchFocus",
           limit: 1,
@@ -107,7 +118,17 @@ export const ContentfulProvider = ({
           setResearchFocus(focusResponse.items[0].fields as ResearchFocus);
         }
 
-        // Fetch research projects
+        // ✅ Research Focus Areas (ID: researchFocus2)
+        const focusAreasResponse = await client.getEntries({
+          content_type: "researchFocus2",
+        });
+        setResearchFocusAreas(
+          focusAreasResponse.items.map(
+            (item) => item.fields as ResearchFocusArea,
+          ),
+        );
+
+        // Research Projects
         const projectsResponse = await client.getEntries({
           content_type: "ResearchProject",
         });
@@ -115,7 +136,7 @@ export const ContentfulProvider = ({
           projectsResponse.items.map((item) => item.fields as ResearchProject),
         );
 
-        // Fetch publications
+        // Publications
         const publicationsResponse = await client.getEntries({
           content_type: "publication",
         });
@@ -123,7 +144,7 @@ export const ContentfulProvider = ({
           publicationsResponse.items.map((item) => item.fields as Publication),
         );
 
-        // Fetch software
+        // Software
         const softwareResponse = await client.getEntries({
           content_type: "software",
         });
@@ -131,7 +152,7 @@ export const ContentfulProvider = ({
           softwareResponse.items.map((item) => item.fields as Software),
         );
 
-        // Fetch lab info
+        // Lab Info
         const labInfoResponse = await client.getEntries({
           content_type: "labInfo",
           limit: 1,
@@ -140,7 +161,7 @@ export const ContentfulProvider = ({
           setLabInfo(labInfoResponse.items[0].fields as LabInfo);
         }
 
-        // Fetch lab statistics
+        // Lab Statistics
         const statisticsResponse = await client.getEntries({
           content_type: "labStatistics",
           limit: 1,
@@ -156,7 +177,6 @@ export const ContentfulProvider = ({
         setSponsors(
           sponsorsResponse.items.map((item) => item.fields as Sponsor),
         );
-
       } catch (error) {
         console.error("Error fetching Contentful data:", error);
       } finally {
@@ -174,6 +194,7 @@ export const ContentfulProvider = ({
         teamMembers,
         galleryImages,
         researchFocus,
+        researchFocusAreas,
         researchProjects,
         publications,
         software,
