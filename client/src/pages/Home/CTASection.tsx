@@ -47,9 +47,9 @@ export default function CTASection() {
 }
 
 const CTASectionContent = {
-  headline: "Join Us in Making Software Engineering Accessible to All",
+  headline: "Join Us in Plural Software Engineering",
   subtitle:
-    "Whether you're a prospective student, industry partner, or fellow researcher, we'd love to hear from you. Let's work together to build more inclusive technology.",
+    "We welcome prospective students, industry partners, and researchers who are interested in advancing software engineering that accounts for diversity, accessibility, and societal plurality. We invite collaboration on research and practice aimed at developing inclusive and equitable software systems.",
   primaryButtonText: "Contact Us",
 };
 

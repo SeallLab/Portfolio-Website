@@ -80,3 +80,18 @@ export const GitHubIcon = () => (
     />
   </svg>
 );
+
+export const UniversityIcon = () => (
+  <svg
+    className="h-6 w-6"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    {/* Mortarboard / university building hybrid */}
+    <path d="M12 2L1 7l11 5 9-4.091V17h2V7L12 2z" />
+    <path d="M4 10.5V16c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-5.5l-8 3.636L4 10.5z" />
+    <path d="M7 14v4h2v-4H7zm4 0v4h2v-4h-2zm4 0v4h2v-4h-2z" />
+  </svg>
+);
+
