@@ -1,10 +1,9 @@
-import ResearchAreaCard from "./ResearchAreaCard";
+import ResearchAreaCard from "../Focus/ResearchAreaCard";
 import { useContentful } from "../../../context/ContentfulContext";
 
 export default function Focus() {
   const { researchFocus, researchFocusAreas } = useContentful();
 
-  // Sort areas by order (same pattern as Projects.tsx)
   const sortedAreas = [...researchFocusAreas].sort(
     (a, b) => (a.order || 0) - (b.order || 0),
   );
@@ -34,8 +33,11 @@ export default function Focus() {
 
         {sortedAreas.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sortedAreas.map((area, index) => (
-              <ResearchAreaCard key={index} area={area} />
+            {sortedAreas.map((area) => (
+              <ResearchAreaCard
+                key={`${area.title}-${area.order ?? ""}`}
+                area={area}
+              />
             ))}
           </div>
         ) : (
