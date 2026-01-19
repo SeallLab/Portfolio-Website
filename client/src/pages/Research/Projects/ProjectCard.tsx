@@ -1,6 +1,6 @@
 // src/pages/Research/Focus/Focus.tsx
 
-import ResearchAreaCard from "./ResearchAreaCard";
+import ResearchAreaCard from "../Focus/ResearchAreaCard";
 import { useContentful } from "../../../context/ContentfulContext";
 
 export default function Focus() {

@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import type { ResearchProject } from "../../types/Contentful";
+import type { ResearchFocusArea } from "../../types/Contentful";
 
 interface ResearchHighlightsProps {
-  highlights: ResearchProject[];
+  highlights: ResearchFocusArea[];
 }
 
 export default function ResearchHighlights({
   highlights,
 }: ResearchHighlightsProps) {
-  const sortedHighlights = [...highlights].sort(
-    (a, b) => (a.order || 0) - (b.order || 0),
-  ).slice(0, 3);
+  const sortedHighlights = [...highlights]
+    .sort((a, b) => (a.order || 0) - (b.order || 0))
+    .slice(0, 3);
 
   return (
     <div className="bg-gray-50 py-24 sm:py-12">
@@ -26,8 +26,8 @@ export default function ResearchHighlights({
           {sortedHighlights.map((highlight, index) => (
             <Link
               key={index}
-              to={"/research/projects"}
-              className={`group relative flex flex-col overflow-hidden rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}
+              to="/research/focus"
+              className="group relative flex flex-col overflow-hidden rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
               <div className="relative flex flex-col flex-grow">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-3">
@@ -47,10 +47,10 @@ export default function ResearchHighlights({
 
         <div className="mt-12 text-center">
           <Link
-            to="/research/projects"
+            to="/research/focus"
             className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 hover:scale-105"
           >
-            View All Research Projects
+            View All Research Areas
             <ArrowRightIcon className="h-5 w-5" />
           </Link>
         </div>
@@ -58,4 +58,3 @@ export default function ResearchHighlights({
     </div>
   );
 }
-

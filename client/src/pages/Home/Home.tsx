@@ -7,12 +7,12 @@ import CTASection from "./CTASection";
 import { useContentful } from "../../context/ContentfulContext";
 
 export default function Home() {
-  const { labStatistics, labDirector, labInfo, researchProjects } = useContentful()
+  const { labStatistics, labDirector, labInfo, researchFocusAreas } = useContentful()
   return (
     <div className="bg-white">
       <HeroSection labInfo={labInfo} statistics={labStatistics} />
       <LabOverview labInfo={labInfo} />
-      <ResearchHighlights highlights={researchProjects} />
+      <ResearchHighlights highlights={researchFocusAreas} />
       <DirectorSpotlight director={labDirector} />
       <Sponsors />
       <CTASection />
