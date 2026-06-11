@@ -43,9 +43,9 @@ export const ContentfulContext = createContext<ContentfulContextType>({
   researchFocus: null,
   researchFocusAreas: [],
   researchProjects: [],
+  keynotes: [],
   publications: [],
   software: [],
-  keynotes: [],
   labInfo: null,
   labStatistics: null,
   sponsors: [],
@@ -61,23 +61,17 @@ export const ContentfulProvider = ({
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [researchFocus, setResearchFocus] = useState<ResearchFocus | null>(null);
-
-  // ✅ Research Focus Areas state
   const [researchFocusAreas, setResearchFocusAreas] = useState<
     ResearchFocusArea[]
   >([]);
-
-  const [researchProjects, setResearchProjects] = useState<ResearchProject[]>(
-    [],
-  );
+  const [researchProjects, setResearchProjects] = useState<ResearchProject[]>([]);
+  const [keynotes, setKeynotes] = useState<Keynote[]>([]); // Add state for keynotes
   const [publications, setPublications] = useState<Publication[]>([]);
   const [software, setSoftware] = useState<Software[]>([]);
   const [labInfo, setLabInfo] = useState<LabInfo | null>(null);
-  const [labStatistics, setLabStatistics] = useState<LabStatistics | null>(
-    null,
-  );
-  const [loading, setLoading] = useState(false);
+  const [labStatistics, setLabStatistics] = useState<LabStatistics | null>(null);
   const [sponsors, setSponsors] = useState<Sponsor[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -118,7 +112,7 @@ export const ContentfulProvider = ({
           setResearchFocus(focusResponse.items[0].fields as ResearchFocus);
         }
 
-        // ✅ Research Focus Areas (ID: researchFocus2)
+        // Research Focus Areas (ID: researchFocus2)
         const focusAreasResponse = await client.getEntries({
           content_type: "researchFocus2",
         });
@@ -135,6 +129,19 @@ export const ContentfulProvider = ({
         setResearchProjects(
           projectsResponse.items.map((item) => item.fields as ResearchProject),
         );
+
+        // Keynotes
+        const keynotesResponse = await client.getEntries({
+          content_type: "keynotes",
+        });
+        // Assuming the fetched data structure aligns with the type
+        setKeynotes(
+          keynotesResponse.items.map((item) => ({
+            ...item.fields,
+            image: item.fields.thumbnail, // Map thumbnail to image
+          }) as Keynote)
+        );
+
 
         // Publications
         const publicationsResponse = await client.getEntries({
@@ -196,6 +203,7 @@ export const ContentfulProvider = ({
         researchFocus,
         researchFocusAreas,
         researchProjects,
+        keynotes,
         publications,
         software,
         labInfo,

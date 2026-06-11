@@ -87,8 +87,10 @@ export type ResearchProject = {
 export type Keynote = {
   title: string;
   description: string;
-  image?: Image;
-  tags?: string[];
+  image?: Image; // Assuming 'thumbnail' is mapped to 'image', use 'Image' type for asset
+  location?: string;
+  mediaLink?: string;
+  eventDate?: string;
   order?: number;
 };
 

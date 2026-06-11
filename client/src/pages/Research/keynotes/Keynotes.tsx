@@ -1,10 +1,12 @@
-import ProjectCard from "./KeynoteCard";
+// File: client/src/pages/Research/keynotes/Keynotes.tsx
+
+import KeynoteCard from "./KeynoteCard"; // Correctly name the import
 import { useContentful } from "../../../context/ContentfulContext";
 
-export default function Projects() {
-  const { researchProjects } = useContentful();
+export default function Keynotes() { // Correct component name
+  const { keynotes } = useContentful();
 
-  const sortedProjects = [...researchProjects].sort(
+  const sortedKeynotes = [...keynotes].sort(
     (a, b) => (a.order || 0) - (b.order || 0),
   );
 
@@ -30,18 +32,18 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {sortedProjects.map((project) => (
-            <ProjectCard
-              key={`${project.title}-${project.order ?? ""}`}
-              project={project}
+          {sortedKeynotes.map((keynote) => (
+            <KeynoteCard
+              key={`${keynote.title}-${keynote.order ?? ""}`}
+              keynote={keynote}
             />
           ))}
         </div>
 
-        {sortedProjects.length === 0 && (
+        {sortedKeynotes.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-gray-500">
-              No research projects to display at this time.
+              No keynotes to display at this time.
             </p>
           </div>
         )}
