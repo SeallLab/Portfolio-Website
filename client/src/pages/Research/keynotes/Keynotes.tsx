@@ -1,14 +1,8 @@
-// File: client/src/pages/Research/keynotes/Keynotes.tsx
-
-import KeynoteCard from "./KeynoteCard"; // Correctly name the import
+import KeynoteCard from "./KeynoteCard";
 import { useContentful } from "../../../context/ContentfulContext";
 
-export default function Keynotes() { // Correct component name
+export default function Keynotes() {
   const { keynotes } = useContentful();
-
-  const sortedKeynotes = [...keynotes].sort(
-    (a, b) => (a.order || 0) - (b.order || 0),
-  );
 
   return (
     <div className="bg-white min-h-screen">
@@ -32,7 +26,7 @@ export default function Keynotes() { // Correct component name
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {sortedKeynotes.map((keynote) => (
+          {keynotes.map((keynote) => (
             <KeynoteCard
               key={`${keynote.title}-${keynote.order ?? ""}`}
               keynote={keynote}
@@ -40,7 +34,7 @@ export default function Keynotes() { // Correct component name
           ))}
         </div>
 
-        {sortedKeynotes.length === 0 && (
+        {keynotes.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-gray-500">
               No keynotes to display at this time.

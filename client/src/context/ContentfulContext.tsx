@@ -13,6 +13,7 @@ import type {
   LabInfo,
   LabStatistics,
   Sponsor,
+  Image,
 } from "../types/Contentful";
 
 const client = createClient({
@@ -65,7 +66,7 @@ export const ContentfulProvider = ({
     ResearchFocusArea[]
   >([]);
   const [researchProjects, setResearchProjects] = useState<ResearchProject[]>([]);
-  const [keynotes, setKeynotes] = useState<Keynote[]>([]); // Add state for keynotes
+  const [keynotes, setKeynotes] = useState<Keynote[]>([]);
   const [publications, setPublications] = useState<Publication[]>([]);
   const [software, setSoftware] = useState<Software[]>([]);
   const [labInfo, setLabInfo] = useState<LabInfo | null>(null);
@@ -133,15 +134,19 @@ export const ContentfulProvider = ({
         // Keynotes
         const keynotesResponse = await client.getEntries({
           content_type: "keynotes",
+          include: 2, // Ensures linked entries like assets are included
         });
-        // Assuming the fetched data structure aligns with the type
-        setKeynotes(
-          keynotesResponse.items.map((item) => ({
-            ...item.fields,
-            image: item.fields.thumbnail, // Map thumbnail to image
-          }) as Keynote)
-        );
 
+        // Log to check image data (optional for debugging)
+        console.log('Keynotes fetched:', keynotesResponse.items);
+
+        const sortedKeynotes = keynotesResponse.items
+          .map((item) => ({
+            ...item.fields,
+            image: item.fields.thumbnail as Image, // Ensure this is an Image type
+          }) as Keynote)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+        setKeynotes(sortedKeynotes);
 
         // Publications
         const publicationsResponse = await client.getEntries({

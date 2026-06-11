@@ -1,5 +1,3 @@
-// File: client/src/pages/Research/keynotes/KeynoteCard.tsx
-
 import type { Keynote } from "../../../types/Contentful";
 
 interface KeynoteCardProps {
@@ -19,7 +17,7 @@ export default function KeynoteCard({ keynote }: KeynoteCardProps) {
           className="rounded-lg mb-4 max-w-full h-auto"
         />
       )}
-      
+
       <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
 
       <p className="text-sm leading-6 text-gray-600 flex-grow">{description}</p>
