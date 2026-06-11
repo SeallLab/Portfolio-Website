@@ -84,6 +84,14 @@ export type ResearchProject = {
   order?: number;
 };
 
+export type Keynote = {
+  title: string;
+  description: string;
+  image?: Image;
+  tags?: string[];
+  order?: number;
+};
+
 export type Publication = {
   title: string;
   authors: string[];

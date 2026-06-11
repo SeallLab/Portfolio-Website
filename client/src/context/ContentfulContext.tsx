@@ -7,6 +7,7 @@ import type {
   ResearchFocus,
   ResearchFocusArea,
   ResearchProject,
+  Keynote,
   Publication,
   Software,
   LabInfo,
@@ -24,11 +25,9 @@ export type ContentfulContextType = {
   teamMembers: TeamMember[];
   galleryImages: GalleryImage[];
   researchFocus: ResearchFocus | null;
-
-  // ✅ Research Focus Areas
   researchFocusAreas: ResearchFocusArea[];
-
   researchProjects: ResearchProject[];
+  keynotes: Keynote[];
   publications: Publication[];
   software: Software[];
   labInfo: LabInfo | null;
@@ -46,6 +45,7 @@ export const ContentfulContext = createContext<ContentfulContextType>({
   researchProjects: [],
   publications: [],
   software: [],
+  keynotes: [],
   labInfo: null,
   labStatistics: null,
   sponsors: [],
