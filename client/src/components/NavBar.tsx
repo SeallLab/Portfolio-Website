@@ -11,6 +11,7 @@ const researchDropdown = [
   { name: "Focus", href: "/research/focus" },
   { name: "Projects", href: "/research/projects" },
   { name: "Publications", href: "/research/publications" },
+  { name: "Keynotes", href: "/research/Keynotes" },
   // removed Software from dropdown
 ];
 

@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import Focus from "./pages/Research/Focus/Focus";
 import Projects from "./pages/Research/Projects/Projects";
 import Publications from "./pages/Research/Publications/Publications";
+import Keynotes from "./pages/Research/keynotes/Keynotes";
 import Software from "./pages/Research/Software/Software";
 import Team from "./pages/Team/Team";
 import Gallery from "./pages/Gallery/Gallery";
@@ -21,6 +22,7 @@ function App() {
       "/research/projects": "Projects",
       "/research/publications": "Publications",
       "/research/software": "Software",
+      "research/keynotes": "Keynotes",
       "/team": "Team",
       "/gallery": "Gallery",
     };
@@ -40,6 +42,7 @@ function App() {
           <Route path="/research/projects" element={<Projects />} />
           <Route path="/research/publications" element={<Publications />} />
           <Route path="/research/software" element={<Software />} />
+          <Route path="/research/keynotes" element={<Keynotes />} />
           <Route path="/team" element={<Team />} />
           <Route path="/gallery" element={<Gallery />} />
         </Route>
