@@ -9,18 +9,21 @@ export default function KeynoteCard({ keynote }: KeynoteCardProps) {
 
   return (
     <div className="group relative flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 transition-all duration-300 hover:shadow-lg hover:scale-105">
-      {/* Thumbnail image */}
+      {/* Thumbnail image with consistent cropping */}
       {image && (
-        <img
-          src={image.fields.file.url}
-          alt={image.fields.title}
-          className="rounded-lg mb-4 max-w-full h-auto"
-        />
+        <div className="overflow-hidden rounded-lg mb-4" style={{ height: "120px" }}>
+          <img
+            src={image.fields.file.url}
+            alt={image.fields.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
       )}
 
       <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
-
-      <p className="text-sm leading-6 text-gray-600 flex-grow">{description}</p>
+      
+      {/* Limit description length with ellipsis for overflowing text */}
+      <p className="text-sm leading-6 text-gray-600 flex-grow overflow-hidden text-ellipsis line-clamp-3">{description}</p>
 
       {location && (
         <p className="mt-4 text-sm text-gray-500">
