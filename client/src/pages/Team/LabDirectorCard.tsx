@@ -45,7 +45,7 @@ export default function LabDirectorCard({ director }: LabDirectorCardProps) {
               <img
                 src={imageUrl}
                 alt={`${fullName} headshot`}
-                className="h-74 w-64 rounded-2xl object-cover ring-4 ring-blue-100 shadow-xl"
+                className="h-full w-64 rounded-2xl object-cover ring-4 ring-blue-100 shadow-xl"
               />
               {countryCode && (
                 <div
