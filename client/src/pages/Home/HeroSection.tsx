@@ -56,12 +56,6 @@ export default function HeroSection({ labInfo, statistics }: HeroSectionProps) {
                   </p>
                   <p className="text-sm text-gray-600">Team Members</p>
                 </div>
-                <div className="border-l-2 border-orange-600 pl-4">
-                  <p className="text-3xl font-bold text-gray-900">
-                    {statistics?.yearsOfResearch}+
-                  </p>
-                  <p className="text-sm text-gray-600">Years</p>
-                </div>
               </div>
             </div>
           </div>

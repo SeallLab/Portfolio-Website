@@ -133,5 +133,5 @@ export type LabStatistics = {
   publicationsCount: number;
   projectsCount: number;
   teamMembersCount: number;
-  yearsOfResearch: number;
+  //yearsOfResearch: number; // not needed anymore
 };
